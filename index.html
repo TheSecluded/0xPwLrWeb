@@ -1,911 +1,174 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdullah Al-Harbi - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        .header {
-            height: 100vh;
-            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.5) 0%, rgba(51, 65, 85, 0.8) 100%);
-        }
-
-        .flag {
-            position: absolute;
-            top: 80px;
-            right: 80px;
-            width: 128px;
-            height: 80px;
-            background: linear-gradient(90deg, #16a34a 0%, #22c55e 100%);
-            border-radius: 4px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transform: rotate(12deg);
-            animation: pulse 2s infinite;
-        }
-
-        .flag::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            animation: pulse 2s infinite;
-        }
-
-        .nav {
-            position: absolute;
-            top: 32px;
-            left: 32px;
-            right: 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .nav h1 {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .nav-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: white;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 10;
-            max-width: 512px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .hero-title {
-            font-size: 3.75rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 24px;
-            letter-spacing: -0.025em;
-        }
-
-        .hero-description {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 32px;
-            line-height: 1.75;
-        }
-
-        .btn {
-            background: #2563eb;
-            color: white;
-            padding: 12px 32px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            background: #1d4ed8;
-            transform: scale(1.05);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 32px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 1s infinite;
-        }
-
-        .scroll-indicator-inner {
-            width: 24px;
-            height: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .scroll-dot {
-            width: 4px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 2px;
-            margin-top: 8px;
-            animation: pulse 2s infinite;
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-white {
-            background: white;
-        }
-
-        .section-gray {
-            background: #f8fafc;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .section-title h3 {
-            font-size: 2.25rem;
-            font-weight: bold;
-            color: #111827;
-            margin-bottom: 16px;
-        }
-
-        .section-title p {
-            color: #6b7280;
-            font-size: 1.125rem;
-        }
-
-        /* Work Experience */
-        .work-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-            align-items: start;
-        }
-
-        @media (min-width: 768px) {
-            .work-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .experience-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        .card {
-            background: white;
-            padding: 24px;
-            border-radius: 8px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s;
-        }
-
-        .card:hover {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        .card-content {
-            display: flex;
-            gap: 16px;
-        }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .card-icon.blue {
-            background: #dbeafe;
-            color: #2563eb;
-        }
-
-        .card-icon.red {
-            background: #fecaca;
-            color: #dc2626;
-        }
-
-        .card-icon.green {
-            background: #dcfce7;
-            color: #16a34a;
-        }
-
-        .card-body h4 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 8px;
-        }
-
-        .card-date {
-            font-size: 0.875rem;
-            color: #6b7280;
-            margin-bottom: 12px;
-        }
-
-        .card-description {
-            color: #374151;
-            margin-bottom: 16px;
-            line-height: 1.6;
-        }
-
-        .card-description ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .card-description li {
-            margin-bottom: 8px;
-        }
-
-        .badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .badge {
-            background: #f1f5f9;
-            color: #475569;
-            padding: 4px 12px;
-            border-radius: 16px;
-            font-size: 0.875rem;
-        }
-
-        /* Certificate */
-        .certificate {
-            display: flex;
-            justify-content: center;
-        }
-
-        .certificate-card {
-            background: linear-gradient(135deg, #9333ea 0%, #2563eb 100%);
-            padding: 32px;
-            border-radius: 16px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transform: rotate(3deg);
-            transition: transform 0.3s;
-        }
-
-        .certificate-card:hover {
-            transform: rotate(0deg);
-        }
-
-        .certificate-inner {
-            background: white;
-            padding: 24px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .certificate-icon {
-            width: 64px;
-            height: 64px;
-            background: #f3e8ff;
-            border-radius: 50%;
-            margin: 0 auto 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9333ea;
-        }
-
-        /* Certifications */
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 48px;
-            align-items: center;
-        }
-
-        @media (min-width: 768px) {
-            .certifications-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .cert-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .cert-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .cert-dot {
-            width: 12px;
-            height: 12px;
-            background: #2563eb;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .cert-text {
-            font-size: 1.125rem;
-            color: #374151;
-        }
-
-        .cert-images {
-            display: flex;
-            justify-content: center;
-        }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .cert-image {
-            background: white;
-            padding: 16px;
-            border-radius: 8px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .cert-placeholder {
-            width: 96px;
-            height: 128px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cert-placeholder.red {
-            background: #fecaca;
-            color: #dc2626;
-        }
-
-        .cert-placeholder.green {
-            background: #dcfce7;
-            color: #16a34a;
-        }
-
-        /* Languages */
-        .languages-grid {
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            flex-wrap: wrap;
-        }
-
-        .language-item {
-            text-align: center;
-        }
-
-        .language-flag {
-            width: 128px;
-            height: 80px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .flag-arabic {
-            background: linear-gradient(90deg, #16a34a 0%, #22c55e 100%);
-            color: white;
-            font-weight: bold;
-            font-size: 1.125rem;
-        }
-
-        .flag-japanese {
-            background: linear-gradient(90deg, #ef4444 0%, white 100%);
-            border: 1px solid #e5e7eb;
-        }
-
-        .flag-japanese::before {
-            content: '';
-            width: 32px;
-            height: 32px;
-            background: #ef4444;
-            border-radius: 50%;
-        }
-
-        .flag-english {
-            background: linear-gradient(90deg, #2563eb 0%, white 50%, #ef4444 100%);
-            color: white;
-            font-weight: bold;
-        }
-
-        .flag-english::before {
-            content: '★';
-            position: relative;
-            z-index: 10;
-        }
-
-        .language-code {
-            font-weight: 600;
-            color: #111827;
-        }
-
-        /* Footer */
-        .footer {
-            background: #1e293b;
-            color: white;
-            padding: 64px 0;
-        }
-
-        .footer-content {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .footer-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 16px;
-        }
-
-        .footer-description {
-            color: #9ca3af;
-            margin-bottom: 32px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-        }
-
-        .social-link {
-            width: 48px;
-            height: 48px;
-            background: #374151;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-
-        .social-link:hover {
-            background: #4b5563;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            color: #6b7280;
-            font-size: 0.875rem;
-            border-top: 1px solid #374151;
-            padding-top: 32px;
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-25%);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .flag {
-                top: 40px;
-                right: 40px;
-                width: 80px;
-                height: 50px;
-            }
-            
-            .nav {
-                top: 16px;
-                left: 16px;
-                right: 16px;
-            }
-            
-            .nav-links {
-                gap: 16px;
-            }
-            
-            .languages-grid {
-                gap: 24px;
-            }
-            
-            .language-flag {
-                width: 100px;
-                height: 60px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>موقعي مثل 0xrushy</title>
+<style>
+/* Reset */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+  font-family: Arial, sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+  margin:0;
+  padding:0;
+}
+
+/* فيديو الخلفية */
+#background-video {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  z-index:-1;
+}
+
+/* القائمة الثابتة */
+header {
+  position: fixed;
+  top:0;
+  width:100%;
+  background: rgba(0,0,0,0.7);
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  z-index:1000;
+}
+header h1 {color:#00ffff;}
+header nav a {
+  color:#fff;
+  text-decoration:none;
+  margin-left:1.5rem;
+  transition: color 0.3s;
+}
+header nav a:hover {color:#00ffff;}
+
+/* أقسام الموقع */
+section {
+  min-height: 100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:2rem;
+}
+
+/* قسم البداية */
+#hero {
+  background: rgba(0,0,0,0.3);
+}
+#hero h2 {
+  font-size:3rem;
+  margin-bottom:1rem;
+  color:#00ffff;
+}
+#hero p {font-size:1.2rem;}
+
+/* المشاريع */
+#projects {background: rgba(0,0,0,0.6);}
+#projects h2 {margin-bottom:2rem; color:#00ffff;}
+.project-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap:1.5rem;
+}
+.project {
+  background: rgba(255,255,255,0.1);
+  padding:1.5rem;
+  border-radius:10px;
+  opacity:0;
+  transform: translateY(50px);
+  transition: transform 0.5s, opacity 0.5s;
+}
+.project:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,255,255,0.2);
+}
+
+/* قسم التواصل */
+#contact {background: rgba(0,0,0,0.5);}
+
+/* Footer */
+footer {
+  text-align:center;
+  padding:1rem;
+  background: rgba(0,0,0,0.7);
+  color:#888;
+}
+
+/* Smooth scroll */
+html {scroll-behavior: smooth;}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="flag"></div>
-        
-        <nav class="nav">
-            <h1>Abdullah Al-Harbi</h1>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#contact">Contact</a>
-                <a href="#blog">Blog</a>
-            </div>
-        </nav>
 
-        <div class="hero-content">
-            <h2 class="hero-title">WHOAMI</h2>
-            <p class="hero-description">
-                A cyber security expert, offensive security researcher from Saudi Arabia.
-            </p>
-            <a href="#contact" class="btn">Contact</a>
-        </div>
+<!-- خلفية الفيديو -->
+<video autoplay muted loop id="background-video">
+  <source src="YOUR_VIDEO_MP4_URL_HERE.mp4" type="video/mp4">
+  متصفحك لا يدعم الفيديو.
+</video>
 
-        <div class="scroll-indicator">
-            <div class="scroll-indicator-inner">
-                <div class="scroll-dot"></div>
-            </div>
-        </div>
-    </header>
+<!-- القائمة الثابتة -->
+<header>
+  <h1>MySite</h1>
+  <nav>
+    <a href="#hero">الرئيسية</a>
+    <a href="#projects">المشاريع</a>
+    <a href="#contact">تواصل</a>
+  </nav>
+</header>
 
-    <!-- Work Experience Section -->
-    <section class="section section-white">
-        <div class="container">
-            <div class="section-title">
-                <h3>WORK EXPERIENCE</h3>
-                <p>Exploring my professional journey</p>
-            </div>
+<!-- قسم البداية -->
+<section id="hero">
+  <div>
+    <h2>مرحباً بك في موقعي</h2>
+    <p>موقع شخصي عصري مع خلفية فيديو وتأثيرات عند التمرير.</p>
+  </div>
+</section>
 
-            <div class="work-grid">
-                <div class="experience-cards">
-                    <!-- Content Creator -->
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-icon blue">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m7 11 2-2-2-2"/>
-                                    <path d="M11 13h4"/>
-                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                                </svg>
-                            </div>
-                            <div class="card-body">
-                                <h4>Content Creator</h4>
-                                <p class="card-date">2019 - Present</p>
-                                <p class="card-description">
-                                    Educational content creator on YouTube with over 100k subscribers, focusing on cybersecurity
-                                    awareness and ethical hacking tutorials.
-                                </p>
-                                <div class="badges">
-                                    <span class="badge">YouTube</span>
-                                    <span class="badge">Education</span>
-                                    <span class="badge">Cybersecurity</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!-- قسم المشاريع -->
+<section id="projects">
+  <h2>مشاريعي</h2>
+  <div class="project-grid">
+    <div class="project">مشروع 1</div>
+    <div class="project">مشروع 2</div>
+    <div class="project">مشروع 3</div>
+    <div class="project">مشروع 4</div>
+  </div>
+</section>
 
-                    <!-- Penetration Tester -->
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-icon red">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m7 11 2-2-2-2"/>
-                                    <path d="M11 13h4"/>
-                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                                </svg>
-                            </div>
-                            <div class="card-body">
-                                <h4>Penetration Tester</h4>
-                                <p class="card-date">2021 - Present</p>
-                                <div class="card-description">
-                                    <ul>
-                                        <li>• Conducted bug hunts for high-profile companies and reported security vulnerabilities</li>
-                                        <li>• Specialized in web application security and mobile app penetration testing</li>
-                                        <li>• Identified critical vulnerabilities</li>
-                                    </ul>
-                                </div>
-                                <div class="badges">
-                                    <span class="badge">Bug Bounty</span>
-                                    <span class="badge">Web Security</span>
-                                    <span class="badge">Mobile Security</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!-- قسم التواصل -->
+<section id="contact">
+  <h2>تواصل معي</h2>
+  <p>البريد الإلكتروني: example@example.com</p>
+</section>
 
-                    <!-- Cybersecurity Instructor -->
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-icon green">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m7 11 2-2-2-2"/>
-                                    <path d="M11 13h4"/>
-                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                                </svg>
-                            </div>
-                            <div class="card-body">
-                                <h4>Instructor for Cybersecurity</h4>
-                                <p class="card-date">2020 - Present</p>
-                                <p class="card-description">
-                                    I have developed multiple courses on Udemy and other platforms that have helped thousands of
-                                    students learn cybersecurity and ethical hacking.
-                                </p>
-                                <div class="badges">
-                                    <span class="badge">Teaching</span>
-                                    <span class="badge">Course Development</span>
-                                    <span class="badge">Udemy</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- Footer -->
+<footer>
+  © 2025 MySite. جميع الحقوق محفوظة.
+</footer>
 
-                <!-- Certificate -->
-                <div class="certificate">
-                    <div class="certificate-card">
-                        <div class="certificate-inner">
-                            <div class="certificate-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m7 11 2-2-2-2"/>
-                                    <path d="M11 13h4"/>
-                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                                </svg>
-                            </div>
-                            <h5 style="font-weight: bold; color: #111827; margin-bottom: 8px;">LEAP</h5>
-                            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 16px;">PENETRATION TESTER</p>
-                            <div style="width: 64px; height: 64px; background: #f3f4f6; border-radius: 4px; margin: 0 auto 16px;"></div>
-                            <p style="font-size: 0.75rem; color: #6b7280;">Certificate ID: LEAP2024</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- JavaScript -->
+<script>
+// تأثير عند التمرير على المشاريع
+const projects = document.querySelectorAll('.project');
+window.addEventListener('scroll', () => {
+  projects.forEach(project => {
+    const rect = project.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+      project.style.opacity = 1;
+      project.style.transform = "translateY(0)";
+    } else {
+      project.style.opacity = 0;
+      project.style.transform = "translateY(50px)";
+    }
+  });
+});
+</script>
 
-    <!-- Professional Certifications -->
-    <section class="section section-gray">
-        <div class="container">
-            <div class="section-title">
-                <h3>PROFESSIONAL CERTIFICATIONS</h3>
-            </div>
-
-            <div class="certifications-grid">
-                <div class="cert-list">
-                    <div class="cert-item">
-                        <div class="cert-dot"></div>
-                        <p class="cert-text">eLearnSecurity Certified Professional Pen-Tester (eCPPT)</p>
-                    </div>
-                    <div class="cert-item">
-                        <div class="cert-dot"></div>
-                        <p class="cert-text">Certified Red Team Professional (CRTP)</p>
-                    </div>
-                    <div class="cert-item">
-                        <div class="cert-dot"></div>
-                        <p class="cert-text">PenTest+ (PT0+)</p>
-                    </div>
-                </div>
-
-                <div class="cert-images">
-                    <div class="cert-grid">
-                        <div class="cert-image">
-                            <div class="cert-placeholder red">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m7 11 2-2-2-2"/>
-                                    <path d="M11 13h4"/>
-                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="cert-image">
-                            <div class="cert-placeholder green">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m7 11 2-2-2-2"/>
-                                    <path d="M11 13h4"/>
-                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Languages Section -->
-    <section class="section section-white">
-        <div class="container">
-            <div class="section-title">
-                <h3>Languages I am studying</h3>
-                <p>
-                    I am a strong believer in these languages and I am passionate about learning new languages and cultures.
-                </p>
-            </div>
-
-            <div class="languages-grid">
-                <!-- Arabic -->
-                <div class="language-item">
-                    <div class="language-flag flag-arabic">العربية</div>
-                    <p class="language-code">AR</p>
-                </div>
-
-                <!-- Japanese -->
-                <div class="language-item">
-                    <div class="language-flag flag-japanese"></div>
-                    <p class="language-code">JP</p>
-                </div>
-
-                <!-- English -->
-                <div class="language-item">
-                    <div class="language-flag flag-english"></div>
-                    <p class="language-code">EN</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <h4 class="footer-title">Connect</h4>
-                <p class="footer-description">Feel free to reach out for collaborations and discussions</p>
-
-                <div class="social-links">
-                    <a href="#" class="social-link">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                            <rect width="4" height="12" x="2" y="9"/>
-                            <circle cx="4" cy="4" r="2"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect width="20" height="16" x="2" y="4" rx="2"/>
-                            <path d="m22 7-10 5L2 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                © 2024 All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            const scrolled = window.pageYOffset;
-            const parallax = scrolled * 0.5;
-            
-            if (header) {
-                header.style.transform = `translateY(${parallax}px)`;
-            }
-        });
-
-        // Add intersection observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards and sections
-        document.querySelectorAll('.card, .section').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Add hover effects to cards
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-    </script>
 </body>
 </html>
