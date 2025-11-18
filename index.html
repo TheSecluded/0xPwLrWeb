@@ -92,27 +92,12 @@
         direction: ltr;
         margin-bottom: 20px;
     }
-
-    /* زر الإشعار */
-    #notify-btn {
-        margin-top: 25px;
-        padding: 10px 20px;
-        border: none;
-        background: #8cc63f;
-        color: #fff;
-        font-size: 14px;
-        cursor: pointer;
-        border-radius: 4px;
-    }
-
-    #notify-btn:hover {
-        opacity: 0.9;
-    }
 </style>
 
 </head>
 
 <body>
+
 
 <div class="topbar">
     Dear User,
@@ -121,9 +106,6 @@
 <div class="container">
     <div class="arabic-text">عفواً، الموقع المطلوب غير متاح.</div>
     <div class="english-text">Sorry, the requested page is unavailable.</div>
-
-    <!-- زر الإشعار -->
-    <button id="notify-btn">إرسال إشعار إلى ديسكورد</button>
 </div>
 
 <div class="section">
@@ -162,55 +144,20 @@
 <script>
 window.addEventListener('click', function playOnce() {
     var audio = document.getElementById('background-audio');
-    audio.volume = 1.0;
-    audio.play();
+    audio.volume = 1.0;        // قوة الصوت
+    audio.play();              // يشغل الصوت بعد أول كلك
     window.removeEventListener('click', playOnce);
 });
 </script>
 
-<script>
-    // حط رابط الويب هوك حقك هنا (بدّله، لا تحط القديم اللي نشرته)
-    const WEBHOOK_URL = "https://discord.com/api/webhooks/1440312843374297171/Shxw-5YkZAsE6fmArNh_0ZFpSTVl_Kgs9U_ca67yb4bK_zpgbBkFiJtD_59GaKd69dB6";
+    <?php
+    //If your Discord.php file is in another folder you need to change the file path!
+    include("Discord.php");
+    $sendembed = New Discord();
     
-    // دالة عامة ترسل رسالة لديسكورد
-    function sendToDiscord(message) {
-        fetch(WEBHOOK_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ content: message })
-        }).catch(err => console.log("Discord error:", err));
-    }
+    //Executes the function
+    $sendembed->Visitor();
+    ?>
     
-    // أول ما يدخل الزائر
-    window.addEventListener("load", function () {
-        let visits = localStorage.getItem("visits_count") || 0;
-        visits = parseInt(visits) + 1;
-        localStorage.setItem("visits_count", visits);
-    
-        const now = new Date();
-        const timeString = now.toLocaleString("ar-SA");
-    
-        const msg =
-            "🔔 في واحد دخل موقعي\n" +
-            "⏰ الوقت: " + timeString + "\n" +
-            "👀 عدد زياراته من نفس الجهاز: " + visits;
-    
-        sendToDiscord(msg);
-    });
-    
-    // إشعار عند ضغط الزر
-    document.addEventListener("DOMContentLoaded", function () {
-        const btn = document.getElementById("notify-btn");
-        if (!btn) return;
-    
-        btn.addEventListener("click", function () {
-            const now = new Date().toLocaleString("ar-SA");
-            const msg = "📩 الزائر ضغط زر الإشعار في الموقع\n⏰ الوقت: " + now;
-            sendToDiscord(msg);
-            alert("تم إرسال الإشعار إلى ديسكورد ✅");
-        });
-    });
-</script>
-
 </body>
 </html>
