@@ -1,423 +1,157 @@
 <!DOCTYPE html>
-<html lang="ar" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SlyCooper1337 توقيع حضور</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<title>Stop entering.</title>
 
-        body {
-            font-family: 'Orbitron', monospace;
-            background-color: #000000;
-            color: #4ade80;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            background-image:
-                repeating-linear-gradient(0deg, rgba(128, 128, 128, 0.05) 0px, rgba(128, 128, 128, 0.05) 1px, transparent 1px, transparent 25px),
-                repeating-linear-gradient(90deg, rgba(128, 128, 128, 0.05) 0px, rgba(128, 128, 128, 0.05) 1px, transparent 1px, transparent 25px);
-            background-size: 25px 25px;
-            padding-top: 35px;
-        }
+<style>
+    body {
+        font-family: Tahoma, sans-serif;
+        background: #ffffff;
+        margin: 0;
+        padding: 0;
+    }
 
-        /* Intro Screen Styles */
-        .intro-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            transition: opacity 1s ease-out;
-        }
+    /* الشريط الأخضر العلوي */
+    .topbar {
+        background: #8cc63f;
+        color: #ffffff;
+        padding: 8px 20px;
+        font-size: 18px;
+        text-align: left;
+        direction: ltr;
+    }
 
-        .intro-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
+    /* الخط الأخضر السفلي */
+    .bottombar {
+        background: #d7e8b0;
+        height: 18px;
+        width: 100%;
+        margin-top: 40px;
+    }
 
-        .intro-text {
-            font-family: 'Share Tech Mono', monospace;
-            color: #4ade80;
-            font-size: 18px;
-            text-align: center;
-            white-space: pre-line;
-            line-height: 1.8;
-        }
+    /* المحتوى */
+    .container {
+        width: 100%;
+        text-align: center;
+        margin-top: 40px;
+    }
 
-        .cursor {
-            animation: blink 1s infinite;
-        }
+    /* النص العربي العلوي */
+    .arabic-text {
+        font-size: 26px;
+        color: #333;
+        margin-bottom: 10px;
+    }
 
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
+    /* النص الإنجليزي */
+    .english-text {
+        font-size: 22px;
+        color: #333;
+        direction: ltr;
+        margin-bottom: 25px;
+    }
 
-        .background-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
-            pointer-events: none;
-        }
+    .section {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        margin-top: 40px;
+    }
 
-        .pattern-box {
-            position: absolute;
-            border: 1px solid rgba(74, 222, 128, 0.2);
-        }
+    /* النص العربي على اليمين */
+    .right-box {
+        width: 45%;
+        font-size: 16px;
+        line-height: 1.9;
+        text-align: right;
+    }
 
-        .pattern-1 {
-            top: 80px;
-            left: 40px;
-            width: 128px;
-            height: 128px;
-            transform: rotate(45deg);
-        }
+    /* النص الإنجليزي على اليسار */
+    .left-box {
+        width: 45%;
+        font-size: 16px;
+        line-height: 1.9;
+        text-align: left;
+        direction: ltr;
+    }
 
-        .pattern-2 {
-            top: 160px;
-            right: 80px;
-            width: 96px;
-            height: 96px;
-            transform: rotate(12deg);
-        }
+    a {
+        color: #0033cc;
+        text-decoration: none;
+        font-weight: bold;
+    }
 
-        .pattern-3 {
-            bottom: 128px;
-            left: 25%;
-            width: 64px;
-            height: 64px;
-            transform: rotate(45deg);
-        }
+    .footer {
+        margin-top: 40px;
+        font-size: 11px;
+        color: #555;
+        text-align: center;
+        direction: ltr;
+        margin-bottom: 20px;
+    }
+</style>
 
-        .pattern-4 {
-            bottom: 80px;
-            right: 33%;
-            width: 80px;
-            height: 80px;
-            transform: rotate(12deg);
-        }
-
-        .container {
-            position: relative;
-            z-index: 10;
-            min-height: calc(100vh - 35px);
-        }
-
-        .main-content {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 32px;
-            min-height: calc(100vh - 35px);
-        }
-
-        .character-frame {
-            margin-bottom: 32px;
-        }
-
-        .character-image {
-            width: 600px;
-            height: 350px;
-            border: 2px solid #ffffff;
-            background-color: #000102;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .character-image img,
-        .character-image video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .main-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
-            font-weight: 900;
-            margin-bottom: 48px;
-            letter-spacing: 0.2em;
-            text-align: center;
-            text-transform: uppercase;
-            background: linear-gradient(to right, #a0a0a0, #ffffff, #a0a0a0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 25px rgba(255, 255, 255, 0.3);
-        }
-
-        .terminal {
-            width: 100%;
-            max-width: 512px;
-            background-color: #000000;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .terminal-header {
-            background-color: #06080a;
-            padding: 16px 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: transparent;
-            border: 1px solid #ffffff33;
-        }
-
-        .terminal-title {
-            margin-left: 16px;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .terminal-content {
-            font-family: 'Share Tech Mono', monospace;
-            padding: 24px;
-            line-height: 1.5;
-        }
-
-        .terminal-line {
-            color: #ffffff;
-            margin-bottom: 12px;
-        }
-
-        .terminal-user {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .terminal-prompt {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .terminal-command {
-            color: #ffffff;
-        }
-
-        .terminal-response {
-            color: #4ade80;
-        }
-
-        .terminal-name {
-            font-weight: 500;
-        }
-
-        .terminal-separator {
-            color: #ffffff;
-        }
-
-        .terminal-arabic {
-            color: #86efac;
-        }
-
-        .footer {
-            margin-top: 48px;
-            text-align: center;
-        }
-
-        .footer p {
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 13px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.5rem;
-            }
-            .character-image {
-                width: 90vw;
-                height: 250px;
-            }
-            .intro-text {
-                font-size: 16px;
-                padding: 20px;
-            }
-        }
-
-        .scrolling-info-bar {
-            width: 100%;
-            background-color: #06080a;
-            padding: 8px 0;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(74, 222, 128, 0.2);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            font-family: 'Share Tech Mono', monospace;
-            color: #4ade80;
-            font-size: 14px;
-            white-space: nowrap;
-        }
-
-        .scrolling-wrapper {
-            display: inline-block;
-            animation: scroll-rtl 30s linear infinite;
-        }
-
-        .scrolling-wrapper span {
-            padding-right: 50px;
-        }
-
-        @keyframes scroll-rtl {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-    </style>
 </head>
+
 <body>
-       
-    <div class="intro-screen" id="introScreen">
-        <div class="intro-text" id="introText">
-            <span class="cursor">|</span>
-        </div>
+
+<div class="topbar">
+    Dear User,
+</div>
+
+<div class="container">
+    <div class="arabic-text">عفواً، الموقع المطلوب غير متاح.</div>
+    <div class="english-text">Sorry, the requested page is unavailable.</div>
+</div>
+
+<div class="section">
+
+    <div class="left-box">
+        If you believe the requested page should not be blocked please  
+        <a href="#">click here</a>.<br><br>
+
+        For more information about Internet service in Saudi Arabia,<br>
+        please click here:  
+        <a href="#">www.internet.gov.sa</a>
     </div>
 
-    <div class="scrolling-info-bar">
-        <div class="scrolling-wrapper">
-            <span id="scrolling-text-1">{'Loading IP info...'}</span>
-            <span id="scrolling-text-2">{'Loading IP info...'}</span>
-        </div>
+    <div class="right-box">
+        إن كنت ترى أن هذه الصفحة تظهر لك بالخطأ وتبين لك أن لا تُحجب تفضل  
+        <a href="#">بالضغط هنا</a>.<br><br>
+
+        لمزيد من المعلومات عن خدمة الإنترنت في المملكة العربية السعودية،
+        تفضل بزيارة الموقع:  
+        <a href="#">www.internet.gov.sa</a>
     </div>
 
-     
-    <audio id="background-audio" autoplay loop>
-        <source src="https://files.catbox.moe/yrixgj.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+</div>
 
-    <div class="background-pattern">
-        <div class="pattern-box pattern-1"></div>
-        <div class="pattern-box pattern-2"></div>
-        <div class="pattern-box pattern-3"></div>
-        <div class="pattern-box pattern-4"></div>
-    </div>
+<div class="bottombar"></div>
 
-    <div class="container">
-           
-        <div class="main-content">
-             
-            <div class="character-frame">
-                <div class="character-image">
-                    <video width="600" height="350" autoplay muted loop playsinline>
-                        <source src="https://files.catbox.moe/lebzr9.mp4" type="video/mp4">
-                        متصفحك لا يدعم تشغيل الفيديو.
-                    </video>
-                </div>
-            </div>
+<div class="footer">
+    This page was generated by secluded [04/Jan/2014:12:55:02 +0300]
+</div>
 
-             
-            <h1 class="main-title">HACKED BY SlyCooper</h1>
+<audio id="background-audio" autoplay loop>
+    <source src="https://files.catbox.moe/7icemy.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
-              
-            <div class="terminal">
-                   
-                <div class="terminal-header">
-                    <div class="terminal-dot"></div>
-                    <div class="terminal-dot"></div>
-                    <div class="terminal-dot"></div>
-                    <span class="terminal-title">x.com/ufqf</span>
-                </div>
-                   
-                <div class="terminal-content">
-                    <div class="terminal-line">
-                        <span class="terminal-user">Computer@system:</span><span class="terminal-prompt">~$ </span><span class="terminal-command">why?</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="terminal-name">SlyCooper</span><span class="terminal-separator"> : </span><span class="terminal-arabic">السلام عليكم ورحمة الله وبركاته</span>
-                    </div>
-                </div>
-            </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var audio = document.getElementById("background-audio");
+    audio.volume = 0.0001; // صوت شبه معدوم عشان المتصفح يسمح بالتشغيل
+    audio.play().then(() => {
+        setTimeout(() => { audio.volume = 1.0; }, 800); // يرجع الصوت طبيعي بعد 0.8 ثانية
+    }).catch((e) => {
+        console.log("Autoplay blocked:", e);
+    });
+});
+</script>
 
-              
-            <div class="footer">
-                <p>OFFICIALY HARB ALDUWAL • SLYCOOPERNETWORK</p>
-                <p>THE MOST WANTED IN EVER COUNTRY ON EARTH THE AND OF TOP THE FBI'S MOST WANTED LIST</p>
-            </div>
-        </div>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            // Intro sequence messages
-            const introMessages = [
-"SlyCooper owns this mess now.",
-"Control? Yeah, SlyCooper took it.",
-"SlyCooper’s connected — deal with it.",
-"Commands? SlyCooper is the boss.",
-"Access level: King SlyCooper."
-
-            ];
-
-            let currentMessageIndex = 0;
-            let currentText = "";
-            const introTextElement = document.getElementById('introText');
-            const introScreen = document.getElementById('introScreen');
-
-            function typeMessage() {
-                if (currentMessageIndex < introMessages.length) {
-                    currentText += (currentMessageIndex === 0 ? "" : "\n") + introMessages[currentMessageIndex];
-                    introTextElement.innerHTML = currentText + '<span class="cursor">|</span>';
-                    currentMessageIndex++;
-                    
-                    setTimeout(typeMessage, 1200);
-                } else {
-                    // Hide intro screen after all messages
-                    setTimeout(() => {
-                        introScreen.classList.add('hidden');
-                        // Start background audio after intro
-                        const audio = document.getElementById('background-audio');
-                        if (audio) {
-                            audio.play().catch(error => {
-                                console.log('Audio autoplay prevented:', error);
-                            });
-                        }
-                    }, 2000);
-                }
-            }
-
-            // Start intro sequence
-            setTimeout(typeMessage, 500);
-
-            // Setup scrolling text
-            const ipInfoText = `نادي الهلال | قناة الصحراء الفضائية | شركة الاتصالات السعودية اس تي سي  | وادي الصفراء | خالد عبدالرحمن | صوت عذب وقلب يفيض بالإنسانية | وادي الغاط | قبيلة حرب  | بداية الطفرة الاقتصادية عام 2004 | إدراج شركة “جاهز”`;
-                        
-            document.getElementById('scrolling-text-1').textContent = ipInfoText;
-            document.getElementById('scrolling-text-2').textContent = ipInfoText;
-        });
-    </script>
 </body>
 </html>
