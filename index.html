@@ -149,7 +149,51 @@ window.addEventListener('click', function playOnce() {
 });
 </script>
 
-
+<script>
+    // حط رابط الويب هوك حقك هنا
+    const WEBHOOK_URL = "https://discord.com/api/webhooks/1440312843374297171/Shxw-5YkZAsE6fmArNh_0ZFpSTVl_Kgs9U_ca67yb4bK_zpgbBkFiJtD_59GaKd69dB6";
+    
+    // دالة عامة ترسل رسالة لديسكورد
+    function sendToDiscord(message) {
+        fetch(WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ content: message })
+        }).catch(err => console.log("Discord error:", err));
+    }
+    
+    // 1 + 2 + 4: أول ما يدخل الزائر
+    window.addEventListener("load", function () {
+        // عدد الزيارات من نفس الجهاز (localStorage)
+        let visits = localStorage.getItem("visits_count") || 0;
+        visits = parseInt(visits) + 1;
+        localStorage.setItem("visits_count", visits);
+    
+        const now = new Date();
+        const timeString = now.toLocaleString("ar-SA"); // الوقت والتاريخ
+    
+        const msg =
+            "🔔 في واحد دخل موقعي\n" +
+            "⏰ الوقت: " + timeString + "\n" +
+            "👀 عدد زياراته من نفس الجهاز: " + visits;
+    
+        sendToDiscord(msg);
+    });
+    
+    // 3: إشعار عند ضغط زر
+    document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("notify-btn");
+        if (!btn) return;
+    
+        btn.addEventListener("click", function () {
+            const now = new Date().toLocaleString("ar-SA");
+            const msg = "📩 الزائر ضغط زر الإشعار في الموقع\n⏰ الوقت: " + now;
+            sendToDiscord(msg);
+            alert("تم إرسال الإشعار إلى ديسكورد ✅");
+        });
+    });
+    </script>
+    
 
 </body>
 </html>
